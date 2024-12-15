@@ -18,7 +18,7 @@ export const blocks = sqliteTable("blocks", {
         movementReference: foreignKey({
             columns: [table.movementId],
             foreignColumns: [movements.id]
-        })
+        }).onUpdate("cascade").onDelete("cascade")
     }
 })
 
