@@ -1,9 +1,10 @@
 import {StatusBar} from 'expo-status-bar';
-import {StyleSheet, Text, View} from 'react-native';
+import {Alert, Button, StyleSheet, Text, View} from 'react-native';
 import * as SQLite from 'expo-sqlite';
 import {drizzle} from 'drizzle-orm/expo-sqlite';
 import {useMigrations} from "drizzle-orm/expo-sqlite/migrator";
 import migrations from "./drizzle/migrations";
+import React from "react";
 
 const expo = SQLite.openDatabaseSync('workouts.db');
 
@@ -14,8 +15,7 @@ export default function App() {
 
     return (
         <View style={styles.container}>
-            <Text>Open up App.tsx to start working on your app!</Text>
-            <StatusBar style="auto"/>
+            <Button title={"add blocks"} onPress={() => Alert.alert('add block')}></Button>
         </View>
     );
 }

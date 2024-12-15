@@ -15,6 +15,13 @@
       "when": 1734282004271,
       "tag": "0001_late_leper_queen",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1734282871145,
+      "tag": "0002_cuddly_ultimo",
+      "breakpoints": true
     }
   ]
 }

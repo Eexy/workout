@@ -2,8 +2,8 @@ import {int, numeric, sqliteTable, text, real, foreignKey} from "drizzle-orm/sql
 import {relations} from "drizzle-orm";
 
 export const movements = sqliteTable("movements", {
-    id: int().primaryKey({autoIncrement: true}),
-    name: text().notNull()
+    id: int("id").primaryKey({autoIncrement: true}),
+    name: text("name").notNull()
 })
 
 export const movementsRelations = relations(movements, ({many}) => ({
@@ -11,28 +11,16 @@ export const movementsRelations = relations(movements, ({many}) => ({
 }))
 
 export const blocks = sqliteTable("blocks", {
-    id: int().primaryKey({autoIncrement: true}),
-    movementId: int().notNull()
-}, (table) => {
-    return {
-        movementReference: foreignKey({
-            columns: [table.movementId],
-            foreignColumns: [movements.id]
-        }).onUpdate("cascade").onDelete("cascade")
-    }
-})
+    id: int("id").primaryKey({autoIncrement: true}),
+    movement: text("movement").notNull()})
 
 export const blocksRelations = relations(blocks, ({many, one}) => ({
     sets: many(sets),
-    movement: one(movements, {
-        fields: [blocks.movementId],
-        references: [movements.id]
-    })
 }))
 
 export const sets = sqliteTable("sets", {
-    id: int().primaryKey({autoIncrement: true}),
-    blockId: int().notNull(),
+    id: int("id").primaryKey({autoIncrement: true}),
+    blockId: int("block_id").notNull(),
     reps: int("reps").notNull(),
     weight: real("weight").notNull(),
 
